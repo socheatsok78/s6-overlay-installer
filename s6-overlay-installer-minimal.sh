@@ -5,7 +5,7 @@ S6_ARCH=$(uname -m)
 
 S6_OVERLAY_VERSION="$1"
 
-s6-install () {
+sx-install () {
 	echo "Downloading $1 archive..."
 	curl -sLO "https://github.com/just-containers/s6-overlay/releases/download/v${S6_OVERLAY_VERSION}/$1"
 	curl -sLO "https://github.com/just-containers/s6-overlay/releases/download/v${S6_OVERLAY_VERSION}/$1.sha256"
@@ -18,8 +18,8 @@ s6-install () {
 }
 
 cd "${S6_TEMP}"
-s6-install "s6-overlay-noarch.tar.xz"
-s6-install "s6-overlay-${S6_ARCH}.tar.xz"
+sx-install "s6-overlay-noarch.tar.xz"
+sx-install "s6-overlay-${S6_ARCH}.tar.xz"
 
 echo "Cleaning up..."
 rm -rf "${S6_TEMP}"
