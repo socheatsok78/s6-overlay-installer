@@ -4,7 +4,7 @@ S6_TEMP=$(mktemp -d)
 S6_ARCH=$(uname -m)
 S6_OVERLAY_VERSION="$1"
 
-s6-install() {
+s6_install () {
   echo "Downloading $1 archive..."
   curl -sLO https://github.com/just-containers/s6-overlay/releases/download/v${S6_OVERLAY_VERSION}/$1
   curl -sLO https://github.com/just-containers/s6-overlay/releases/download/v${S6_OVERLAY_VERSION}/$1.sha256
@@ -14,7 +14,6 @@ s6-install() {
 
   echo "Installing $1..."
   tar -C / -Jxpf "$1"
-
 }
 
 cd "${S6_TEMP}"
