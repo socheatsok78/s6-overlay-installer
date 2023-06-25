@@ -28,7 +28,6 @@ s6_install () {
 cd "${S6_TEMP}" && {
 	s6_install "s6-overlay-noarch.tar.xz"
 	s6_install "s6-overlay-${S6_ARCH}.tar.xz"
-
 }
 
 echo "Cleaning up..."
