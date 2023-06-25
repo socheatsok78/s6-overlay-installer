@@ -6,7 +6,7 @@ S6_TEMP=$(mktemp -d)
 S6_ARCH=$(uname -m)
 S6_OVERLAY_VERSION="${1:-$S6_OVERLAY_VERSION}"
 
-if [[ -z "${S6_OVERLAY_VERSION}" ]]; then
+if [ -z "${S6_OVERLAY_VERSION}" ]; then
 	echo "[Error] S6_OVERLAY_VERSION is not set."
 	exit 1
 fi
