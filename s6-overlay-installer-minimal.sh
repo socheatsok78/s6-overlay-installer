@@ -4,7 +4,6 @@ S6_TEMP=$(mktemp -d)
 S6_ARCH=$(uname -m)
 
 S6_OVERLAY_VERSION="$1"
-shift
 
 s6-install () {
 	echo "Downloading $1 archive..."
