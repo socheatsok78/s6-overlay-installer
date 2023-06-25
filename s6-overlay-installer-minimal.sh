@@ -1,18 +1,25 @@
 #!/bin/sh
 
-cd /tmp
+S6_TEMP=$(mktemp -d)
+S6_ARCH=$(uname -m)
+S6_OVERLAY_VERSION="$1"
 
-echo Download s6-overlay...
-curl -sLO https://github.com/just-containers/s6-overlay/releases/download/v${S6_OVERLAY_VERSION}/s6-overlay-noarch.tar.xz
-curl -sLO https://github.com/just-containers/s6-overlay/releases/download/v${S6_OVERLAY_VERSION}/s6-overlay-noarch.tar.xz.sha256
-curl -sLO https://github.com/just-containers/s6-overlay/releases/download/v${S6_OVERLAY_VERSION}/s6-overlay-x86_64.tar.xz
-curl -sLO https://github.com/just-containers/s6-overlay/releases/download/v${S6_OVERLAY_VERSION}/s6-overlay-x86_64.tar.xz.sha256
+s6-install() {
+  echo "Downloading $1 archive..."
+  curl -sLO https://github.com/just-containers/s6-overlay/releases/download/v${S6_OVERLAY_VERSION}/$1
+  curl -sLO https://github.com/just-containers/s6-overlay/releases/download/v${S6_OVERLAY_VERSION}/$1.sha256
+  
+  echo "Verify $1 checksums..."
+  sha256sum -c $1.sha256
 
-echo Verify checksums...
-sha256sum -c *.sha256
+  echo "Installing $1..."
+  tar -C / -Jxpf "$1"
 
-echo Install s6-overlay...
-tar -C / -Jxpf s6-overlay-noarch.tar.xz
-tar -C / -Jxpf s6-overlay-x86_64.tar.xz
+}
 
-rm -rf /tmp/*.tar*
+cd "${S6_TEMP}"
+s6-download "s6-overlay-noarch.tar.xz"
+s6-download "s6-overlay-${S6_ARCH}.tar.xz"
+
+echo "Cleaning up..."
+rm -rf "${S6_TEMP}"
