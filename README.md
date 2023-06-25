@@ -1,7 +1,20 @@
 # s6-overlay-installer
 Installer scripts for s6-overlay
 
+## Usage
+
+The installer will automatically detect the architecture using `uname -m` of the container and download the appropriate archive.
+
+```Dockerfile
+ARG S6_OVERLAY_VERSION=v3.1.5.0
+ARG S6_OVERLAY_INSTALLER=main/s6-overlay-installer-minimal.sh
+RUN sh -c "$(curl -fsSL https://raw.githubusercontent.com/socheatsok78/s6-overlay-installer/${S6_OVERLAY_INSTALLER})"
+ENTRYPOINT [ "/init" ]
+```
+
 ## Installer
+
+Available installers:
 
 ### `s6-overlay-installer.sh`
 
@@ -29,14 +42,3 @@ If you are running daemons that cannot log to stderr to take advantage of the s6
 - `s6-overlay-symlinks-noarch.tar.xz`
 - `s6-overlay-symlinks-arch.tar.xz`
 - `syslogd-overlay-noarch.tar.xz`
-
-## Usage
-
-The installer will automatically detect the architecture using `uname -m` of the container and download the appropriate archive.
-
-```Dockerfile
-ARG S6_OVERLAY_VERSION=v3.1.5.0
-ARG S6_OVERLAY_INSTALLER=main/s6-overlay-installer-minimal.sh
-RUN sh -c "$(curl -fsSL https://raw.githubusercontent.com/socheatsok78/s6-overlay-installer/${S6_OVERLAY_INSTALLER})"
-ENTRYPOINT [ "/init" ]
-```
