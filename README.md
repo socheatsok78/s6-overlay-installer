@@ -1,2 +1,2 @@
-# s6-overlay-install
+# s6-overlay-installer
 Installer scripts for s6-overlay
