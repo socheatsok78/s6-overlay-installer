@@ -6,11 +6,11 @@ RUN apk add --no-cache \
 
 ARG S6_OVERLAY_VERSION=3.1.5.0
 
-COPY --chmod=0765 ./s6-overlay-installer-minimal.sh /s6-overlay-installer-minimal.sh
-RUN /s6-overlay-installer-minimal.sh
-
-COPY --chmod=0765 ./s6-overlay-installer-full.sh /s6-overlay-installer-full.sh
-RUN /s6-overlay-installer-full.sh
+ARG S6_OVERLAY_VERSION=v3.1.5.0
+ARG S6_OVERLAY_INSTALLER=main/s6-overlay-installer.sh
+# ARG S6_OVERLAY_INSTALLER=main/s6-overlay-installer-minimal.sh
+# ARG S6_OVERLAY_INSTALLER=main/s6-overlay-installer-syslogd.sh
+RUN sh -c "$(curl -fsSL https://raw.githubusercontent.com/socheatsok78/s6-overlay-installer/${S6_OVERLAY_INSTALLER})"
 
 ENTRYPOINT [ "/init" ]
 CMD [ "sleep", "infinity" ]
