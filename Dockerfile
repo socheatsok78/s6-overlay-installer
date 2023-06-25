@@ -4,7 +4,6 @@ RUN apk add --no-cache \
 	bash \
 	curl
 
-
 ARG S6_OVERLAY_VERSION=3.1.5.0
 
 COPY --chmod=0765 ./s6-overlay-installer-minimal.sh /s6-overlay-installer-minimal.sh
