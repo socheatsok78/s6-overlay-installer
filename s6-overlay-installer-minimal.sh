@@ -13,11 +13,11 @@ fi
 
 s6_install () {
 	echo "Downloading $1 archive from $S6_DOWNLOAD_URL/v${S6_OVERLAY_VERSION}/$1..."
-	curl -fSLO "$S6_DOWNLOAD_URL/v${S6_OVERLAY_VERSION}/$1"
+	curl -fSLO "$S6_DOWNLOAD_URL/${S6_OVERLAY_VERSION}/$1"
 	echo
 
 	echo "Verify $1 checksums..."
-	curl -fSLO "$S6_DOWNLOAD_URL/v${S6_OVERLAY_VERSION}/$1.sha256"
+	curl -fSLO "$S6_DOWNLOAD_URL/${S6_OVERLAY_VERSION}/$1.sha256"
 	sha256sum -c "$1.sha256"
 	echo
 
