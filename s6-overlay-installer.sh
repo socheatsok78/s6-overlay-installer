@@ -30,7 +30,6 @@ cd "${S6_TEMP}" && {
 	s6_install "s6-overlay-${S6_ARCH}.tar.xz"
 	s6_install "s6-overlay-symlinks-noarch.tar.xz"
 	s6_install "s6-overlay-symlinks-arch.tar.xz"
-	s6_install "s6-overlay-symlinks-arch.tar.xz"
 }
 
 echo "Cleaning up..."
