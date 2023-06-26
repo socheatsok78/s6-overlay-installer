@@ -12,16 +12,15 @@ fi
 s6_install () {
 	echo "[-] Downloading $1 archive..."
 	curl -fSLO "$S6_DOWNLOAD_URL/${S6_OVERLAY_VERSION}/$1"
-	echo
 
 	curl -fsSLO "$S6_DOWNLOAD_URL/${S6_OVERLAY_VERSION}/$1.sha256"
 	echo -n "[-] Verify checksums "
 	sha256sum -c "$1.sha256"
-	echo
 
-	echo "[-] Overlay $1 to rootfs directory..."
-	tar -C / -Jxpf "$1"
-	echo
+	echo "[-] Overlay $1 to rootfs directory... "
+	tar -C / -Jxpf "$1" && echo "OK"
+
+	ecoh
 }
 
 S6_ARCH=$(uname -m)
