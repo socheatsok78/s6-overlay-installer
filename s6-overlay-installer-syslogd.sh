@@ -14,12 +14,12 @@ s6_install () {
 	curl -fSLO "$S6_DOWNLOAD_URL/${S6_OVERLAY_VERSION}/$1"
 	echo
 
-	echo "[-] Verify $1 checksums..."
 	curl -fsSLO "$S6_DOWNLOAD_URL/${S6_OVERLAY_VERSION}/$1.sha256"
+	echo -n "[-] Verify checksums "
 	sha256sum -c "$1.sha256"
 	echo
 
-	echo "[-] Installing $1..."
+	echo "[-] Overlay $1 to rootfs directory..."
 	tar -C / -Jxpf "$1"
 	echo
 }
@@ -31,11 +31,14 @@ S6_TEMP=$(mktemp -d)
 echo "Creating temporary directory: ${S6_TEMP}"
 
 cd "${S6_TEMP}" && {
+	echo
+	echo "Downloading modules..."
 	s6_install "s6-overlay-noarch.tar.xz"
 	s6_install "s6-overlay-${S6_ARCH}.tar.xz"
 	s6_install "s6-overlay-symlinks-noarch.tar.xz"
 	s6_install "s6-overlay-symlinks-arch.tar.xz"
 	s6_install "syslogd-overlay-noarch.tar.xz"
+	echo
 }
 
 echo "Removing ${S6_TEMP}..."
