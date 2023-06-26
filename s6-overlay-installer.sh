@@ -10,17 +10,18 @@ if [ -z "${S6_OVERLAY_VERSION}" ]; then
 fi
 
 s6_install () {
-	echo "Downloading $1 archive..."
+	echo "[-] Downloading $1 archive..."
 	curl -fSLO "$S6_DOWNLOAD_URL/${S6_OVERLAY_VERSION}/$1"
 	echo
 
-	echo "  - Verify $1 checksums..."
+	echo "[-] Verify $1 checksums..."
 	curl -fsSLO "$S6_DOWNLOAD_URL/${S6_OVERLAY_VERSION}/$1.sha256"
 	sha256sum -c "$1.sha256"
 	echo
 
-	echo "  - Installing $1..."
+	echo "[-] Installing $1..."
 	tar -C / -Jxpf "$1"
+	echo
 }
 
 S6_ARCH=$(uname -m)
