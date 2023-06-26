@@ -17,7 +17,7 @@ s6_install () {
 	echo -n "[-] Verify checksums "
 	sha256sum -c "$1.sha256"
 
-	echo "[-] Overlay $1 to rootfs directory... "
+	echo -n "[-] Overlay $1 to rootfs directory... "
 	tar -C / -Jxpf "$1" && echo "OK"
 
 	echo
