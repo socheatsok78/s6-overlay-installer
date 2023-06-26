@@ -20,7 +20,7 @@ s6_install () {
 	echo "[-] Overlay $1 to rootfs directory... "
 	tar -C / -Jxpf "$1" && echo "OK"
 
-	ecoh
+	echo
 }
 
 S6_ARCH=$(uname -m)

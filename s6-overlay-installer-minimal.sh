@@ -20,7 +20,7 @@ s6_install () {
 	echo "[-] Overlay $1 to rootfs directory... "
 	tar -C / -Jxpf "$1" && echo "OK"
 
-	ecoh
+	echo
 }
 
 S6_ARCH=$(uname -m)
@@ -30,11 +30,9 @@ S6_TEMP=$(mktemp -d)
 echo "Creating temporary directory: ${S6_TEMP}"
 
 cd "${S6_TEMP}" && {
-	echo
 	echo "Downloading modules..."
 	s6_install "s6-overlay-noarch.tar.xz"
 	s6_install "s6-overlay-${S6_ARCH}.tar.xz"
-	echo
 }
 
 echo "Removing ${S6_TEMP}..."
