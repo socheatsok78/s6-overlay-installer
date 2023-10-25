@@ -22,6 +22,10 @@ If you are not planning to use `CMD` instruction to run your application and ins
 CMD [ "sleep", "infinity" ]
 ```
 
+You probably might also want to set `S6_BEHAVIOUR_IF_STAGE2_FAILS=2`, the `S6_BEHAVIOUR_IF_STAGE2_FAILS` use to determines what the container should do if one of the service scripts fails. In this case since we are not using `CMD` instruction, the service will keep on restarting if it failed but the container will continue to keep running as like nothing happends.
+
+By setting the `S6_BEHAVIOUR_IF_STAGE2_FAILS=2`, we instruction the supervisor to stop the container if any of the service failed. Combined it with Docker `restart-policy` the container will act like it used to be.
+
 ## Installer
 
 Available installers:
