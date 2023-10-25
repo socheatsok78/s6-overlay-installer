@@ -16,6 +16,12 @@ RUN sh -c "$(curl -fsSL https://raw.githubusercontent.com/socheatsok78/s6-overla
 ENTRYPOINT [ "/init" ]
 ```
 
+If you are not planning to use `CMD` instruction to run your application and instead uses the `s6` supervised service. You might find it useful to add this in place of your `CMD` instruction.
+
+```Dockerfile
+CMD [ "sleep", "infinity" ]
+```
+
 ## Installer
 
 Available installers:
