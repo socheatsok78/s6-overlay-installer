@@ -1,5 +1,5 @@
 #!/bin/sh
-set -e
+set -ae
 # Customizing s6-overlay behaviour
 # https://github.com/just-containers/s6-overlay?tab=readme-ov-file#customizing-s6-overlay-behaviour
 S6_VERBOSITY=${S6_VERBOSITY:-1}
