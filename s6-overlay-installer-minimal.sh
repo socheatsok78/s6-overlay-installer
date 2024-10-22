@@ -3,7 +3,7 @@ set -e
 
 S6_DOWNLOAD_URL=https://github.com/just-containers/s6-overlay/releases/download
 S6_OVERLAY_VERSION="${1:-$S6_OVERLAY_VERSION}"
-S6_OVERLAY_INSTALL_PATH="${2:-/}"
+S6_OVERLAY_INSTALL_PATH="${2:-${S6_OVERLAY_INSTALL_PATH:-/}}"
 
 if [ -z "${S6_OVERLAY_VERSION}" ]; then
 	echo "[Error] S6_OVERLAY_VERSION is not set."
