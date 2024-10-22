@@ -41,7 +41,7 @@ This installer will install all default binaries and symlinks.
 
 ### `s6-overlay-installer-minimal.sh`
 
-This installer will install all default binaries.
+This installer will install only necessary binaries.
 
 - `s6-overlay-noarch.tar.xz`
 - `s6-overlay-${S6_ARCH}.tar.xz`
