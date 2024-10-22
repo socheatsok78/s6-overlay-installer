@@ -28,6 +28,9 @@ s6_install () {
 }
 
 S6_ARCH=$(uname -m)
+if [[ "${S6_ARCH}" == "armv7l" ]]; then
+	S6_ARCH=arm
+fi
 echo "Detecting architecture: ${S6_ARCH}"
 
 S6_TEMP=$(mktemp -d)
