@@ -3,6 +3,7 @@ set -e
 
 S6_DOWNLOAD_URL=https://github.com/just-containers/s6-overlay/releases/download
 S6_OVERLAY_VERSION="${1:-$S6_OVERLAY_VERSION}"
+S6_OVERLAY_INSTALL_PATH="${2:-/}"
 
 if [ -z "${S6_OVERLAY_VERSION}" ]; then
 	echo "[Error] S6_OVERLAY_VERSION is not set."
@@ -10,15 +11,17 @@ if [ -z "${S6_OVERLAY_VERSION}" ]; then
 fi
 
 s6_install () {
-	echo "[-] Downloading $1 archive..."
-	curl -fSLO "$S6_DOWNLOAD_URL/${S6_OVERLAY_VERSION}/$1"
+	local filename=$1
 
-	curl -fsSLO "$S6_DOWNLOAD_URL/${S6_OVERLAY_VERSION}/$1.sha256"
+	echo "[-] Downloading ${filename} archive..."
+	curl -fSLO "$S6_DOWNLOAD_URL/${S6_OVERLAY_VERSION}/${filename}"
+
+	curl -fsSLO "$S6_DOWNLOAD_URL/${S6_OVERLAY_VERSION}/${filename}.sha256"
 	echo -n "[-] Verify checksums "
-	sha256sum -c "$1.sha256"
+	sha256sum -c "${filename}.sha256"
 
-	echo -n "[-] Overlay $1 to rootfs directory: "
-	tar -C / -Jxpf "$1" && echo "OK"
+	echo -n "[-] Overlay ${filename} to ${S6_OVERLAY_INSTALL_PATH} directory: "
+	tar -C "${S6_OVERLAY_INSTALL_PATH}" -Jxpf "${filename}" && echo "OK"
 
 	echo
 }
