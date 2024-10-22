@@ -1,8 +1,6 @@
 # s6-overlay-installer
 
-Installer scripts for s6-overlay
-
-https://github.com/just-containers/s6-overlay
+Installer scripts for [s6-overlay](https://github.com/just-containers/s6-overlay).
 
 ## Usage
 
