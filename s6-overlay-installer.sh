@@ -21,6 +21,7 @@ s6_install () {
 	sha256sum -c "${filename}.sha256"
 
 	echo -n "[-] Overlay ${filename} to ${S6_OVERLAY_INSTALL_PATH} directory: "
+	mkdir -p "${S6_OVERLAY_INSTALL_PATH}"
 	tar -C "${S6_OVERLAY_INSTALL_PATH}" -Jxpf "${filename}" && echo "OK"
 
 	echo
