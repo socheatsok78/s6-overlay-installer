@@ -2,6 +2,8 @@
 
 Installer scripts for [s6-overlay](https://github.com/just-containers/s6-overlay).
 
+A container image distribution of the s6-overlay can be found [here](https://github.com/socheatsok78/s6-overlay-distribution).
+
 ## Usage
 
 The installer will automatically detect the architecture using `uname -m` of the container and download the appropriate archive.
