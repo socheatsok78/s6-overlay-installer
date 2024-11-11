@@ -1,3 +1,6 @@
+> [!IMPORTANT]
+> DEPRECATED: Please use [socheatsok78/s6-overlay-distribution](https://github.com/socheatsok78/s6-overlay-distribution) instead.
+
 # s6-overlay-installer
 
 Installer scripts for [s6-overlay](https://github.com/just-containers/s6-overlay).
